@@ -20,27 +20,39 @@ function condicionesIniciales() {
 
 condicionesIniciales();
 
+function limiteIntentos(intentos) {
+    if(intentos>3){
+        asignarTxtElemento('p','No adivinaste el numero secreto, se acabó el juego');
+        document.getElementById('reiniciar').removeAttribute('disabled');
+        document.getElementById('intentar').setAttribute('disabled','true');
+
+    }
+}
+
 function verificarIntento() {
     let numeroDeUsuario = parseInt(document.getElementById('valorUsuario').value);
 
-    if (numeroDeUsuario === numSecreto) {
-        asignarTxtElemento('p', `¡Acertaste el número secreto en ${numIntentos} ${numIntentos === 1 ? 'intento' : 'intentos'}!`);
-        document.getElementById('reiniciar').removeAttribute('disabled');
-    }
-    else if (numSecreto > numeroDeUsuario) {
-        asignarTxtElemento('p', 'El número secreto es mayor');
-        numIntentos++;
-        limpiarInput();
-    }
-    else if (numSecreto < numeroDeUsuario) {
-        asignarTxtElemento('p', 'El número secreto es menor');
-        numIntentos++;
-        limpiarInput();
-    }
-    else {
-        asignarTxtElemento('p', 'No se ingreso un número');
-        limpiarInput();
-    }
+        if (numeroDeUsuario === numSecreto) {
+            asignarTxtElemento('p', `¡Acertaste el número secreto en ${numIntentos} ${numIntentos === 1 ? 'intento' : 'intentos'}!`);
+            document.getElementById('reiniciar').removeAttribute('disabled');
+        }
+        else if (numSecreto > numeroDeUsuario) {
+            asignarTxtElemento('p', 'El número secreto es mayor');
+            numIntentos++;
+            limpiarInput();
+        }
+        else if (numSecreto < numeroDeUsuario) {
+            asignarTxtElemento('p', 'El número secreto es menor');
+            numIntentos++;
+            limpiarInput();
+        }
+        else {
+            asignarTxtElemento('p', 'No se ingreso un número');
+            limpiarInput();
+        }
+
+        limiteIntentos(numIntentos);
+    
 }
 
 function limpiarInput() {
@@ -76,7 +88,7 @@ function generarNumSecreto() {
     //console.log(listaNumeroSorteados);
 
     if (listaNumeroSorteados.length == numMaximo) {//Condición de salida de recursividad
-        asignarTxtElemento('p','Ya se sortearon todos los números posibles');
+        asignarTxtElemento('p', 'Ya se sortearon todos los números posibles');
     }
     else {
         if (listaNumeroSorteados.includes(numeroGenerado)) {
