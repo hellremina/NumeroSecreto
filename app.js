@@ -14,6 +14,7 @@ let numMaximo = 10;
 function condicionesIniciales() {
     asignarTxtElemento('h1', 'Juego del número secreto');
     asignarTxtElemento('p', `Indica un número del 1 al ${numMaximo}`);
+    document.getElementById('intentar').removeAttribute('disabled');
     numSecreto = generarNumSecreto();
     numIntentos = 1;
 }
