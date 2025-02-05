@@ -21,7 +21,7 @@ function condicionesIniciales() {
 condicionesIniciales();
 
 function limiteIntentos(intentos) {
-    if(intentos>3){
+    if(intentos>4){
         asignarTxtElemento('p','No adivinaste el numero secreto, se acabó el juego');
         document.getElementById('reiniciar').removeAttribute('disabled');
         document.getElementById('intentar').setAttribute('disabled','true');
